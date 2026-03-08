@@ -20,7 +20,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/topicos")
-@SecurityRequirement(name = "bearer-key") // Habilita el candadito en Swagger
+@SecurityRequirement(name = "bearer-key")
 public class TopicoController {
 
     @Autowired

@@ -1,0 +1,608 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Request
+meta:
+  id: wrk_7457bf6751974027bd0ce10f8c02d232
+  created: 1772916427624
+  modified: 1772917771152
+  description: ""
+collection:
+  - name: Auth
+    meta:
+      id: fld_b999c0b9a0a64420ad95105aca424234
+      created: 1772917709750
+      modified: 1772934942595
+      sortKey: -1772917709750
+      description: ""
+    children:
+      - url: "{{ _.base_url }}/login"
+        name: POST /login - OK
+        meta:
+          id: req_9770b55f06ba4c3cbf6c7d66c86548fd
+          created: 1772917709751
+          modified: 1772934446531
+          isPrivate: false
+          description: ""
+          sortKey: -1772917709751
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+                "login": "admin@forohub.com",
+                "clave": "123456"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/login"
+        name: POST /login - Password invalida
+        meta:
+          id: req_146da51e8daf4e45a91cbc1d39d56a14
+          created: 1772917709752
+          modified: 1772937529515
+          isPrivate: false
+          description: ""
+          sortKey: -1772917709752
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "login": "admin@forohub.com",  
+              "clave": "ESTA_ES_UNA_CLAVE_ERRONEA_123"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/login"
+        name: POST /login - Formato invalido (400)
+        meta:
+          id: req_97c3d5e07f024f72bcf1cae24d88dc74
+          created: 1772917709754
+          modified: 1772935029142
+          isPrivate: false
+          description: ""
+          sortKey: -1772917709754
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "correoElectronico": "admin@forohub.com",
+              "contrasena": "password"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Topicos
+    meta:
+      id: fld_dbda9f8c422f4b34969610a68d1b06f4
+      created: 1772917709755
+      modified: 1772938709329
+      sortKey: -1772917709755
+      description: ""
+    children:
+      - url: "{{ _.base_url }}/topicos?page=0&size=10&sort=fechaCreacion,desc"
+        name: GET /topicos - Sin token (401/403)
+        meta:
+          id: req_10038ea5e78644afae1b586d10986074
+          created: 1772917709757
+          modified: 1772917709757
+          isPrivate: false
+          description: ""
+          sortKey: -1772917709757
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/topicos?page=0&size=10&sort=fechaCreacion,desc"
+        name: GET /topicos - Con token
+        meta:
+          id: req_d7029d982ee14d2ea5eb7161233b590b
+          created: 1772917709758
+          modified: 1772935153503
+          isPrivate: false
+          description: ""
+          sortKey: -1772917709758
+        method: GET
+        headers:
+          - name: Authorization
+            value: Bearer {{ _.bearer.bearer }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/topicos/2"
+        name: GET /topicos/{id}
+        meta:
+          id: req_61eb200545a946b18481420f467244d2
+          created: 1772917709760
+          modified: 1772936185221
+          isPrivate: false
+          description: ""
+          sortKey: -1772917709760
+        method: GET
+        headers:
+          - name: Authorization
+            value: Bearer {{ _.bearer.bearer }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/topicos"
+        name: POST /topicos - Crear OK
+        meta:
+          id: req_ed9ddae785e04496b9010062ff7c9976
+          created: 1772917709761
+          modified: 1772936477236
+          isPrivate: false
+          description: ""
+          sortKey: -1772917709761
+        method: POST
+        body:
+          mimeType: application/json
+          text: >-
+            {
+              "titulo": "Error LazyInitializationException en Hibernate",
+              "mensaje": "Al intentar acceder a la lista de respuestas me da error de sesión cerrada. ¿Cómo configuro @Transactional?",
+              "autorId": 1,
+              "cursoId": 1
+            }
+        headers:
+          - name: Authorization
+            value: Bearer {{ _.bearer.bearer }}
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/topicos"
+        name: POST /topicos - Duplicado (409)
+        meta:
+          id: req_3afccda2f481406aa2b6eea095ee03db
+          created: 1772917709763
+          modified: 1772936096571
+          isPrivate: false
+          description: ""
+          sortKey: -1772917709763
+        method: POST
+        body:
+          mimeType: application/json
+          text: >-
+            {
+              "titulo": "Error LazyInitializationException en Hibernate",
+              "mensaje": "Al intentar acceder a la lista de respuestas me da error de sesión cerrada. ¿Cómo configuro @Transactional?",
+              "autorId": 1,
+              "cursoId": 1
+            }
+        headers:
+          - name: Authorization
+            value: Bearer {{ _.bearer.bearer }}
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/topicos/5"
+        name: PUT /topicos/{id} - Actualizar
+        meta:
+          id: req_4962e51720c04427909ce9ef5178c855
+          created: 1772917709765
+          modified: 1772936568713
+          isPrivate: false
+          description: ""
+          sortKey: -1772917709765
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "titulo": "Duda JWT en Spring Security 6",
+              "mensaje": "Actualice la descripcion del problema"
+            }
+        headers:
+          - name: Authorization
+            value: Bearer {{ _.bearer.bearer }}
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/topicos/3"
+        name: DELETE /topicos/{id}
+        meta:
+          id: req_c9eced55c48249a0a41e1360059a2630
+          created: 1772917709766
+          modified: 1772936429922
+          isPrivate: false
+          description: ""
+          sortKey: -1772917709766
+        method: DELETE
+        headers:
+          - name: Authorization
+            value: Bearer {{ _.bearer.bearer }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/topicos"
+        name: POST /topicos - Validacion (400)
+        meta:
+          id: req_0198089b177b4ef990b89135cda71794
+          created: 1772917709768
+          modified: 1772936348975
+          isPrivate: false
+          description: ""
+          sortKey: -1772917709768
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "titulo": "",
+              "mensaje": "   ",
+              "autorId": "",
+              "cursoId": ""
+            }
+        headers:
+          - name: Authorization
+            value: Bearer {{ _.bearer.bearer }}
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/topicos"
+        name: POST /topicos - Validacion (400) No Existe ID Curso
+        meta:
+          id: req_f4b2a3ee803c490cbba7f071e77a905a
+          created: 1772936302975
+          modified: 1772936324199
+          isPrivate: false
+          description: ""
+          sortKey: -1772917709767
+        method: POST
+        body:
+          mimeType: application/json
+          text: >
+            {
+              "titulo": "Duda sobre Angular",
+              "mensaje": "Sé que este foro es de Java, pero tengo una duda de frontend.",
+              "autorId": 1,
+              "cursoId": 500
+            }
+        headers:
+          - name: Authorization
+            value: Bearer {{ _.bearer.bearer }}
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Usuarios
+    meta:
+      id: fld_169996c00fbd4dc3bdbb2b98597123b4
+      created: 1772938728976
+      modified: 1772939792343
+      sortKey: -1772938728976
+      description: ""
+    children:
+      - url: "{{ _.base_url }}/usuarios"
+        name: POST /usuarios -  Crear Nuevo Usuario
+        meta:
+          id: req_5e95f41392d247dd85a1837a2566e0ea
+          created: 1772938734142
+          modified: 1772939759345
+          isPrivate: false
+          description: ""
+          sortKey: -1772938743504
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "nombre": "Estudiante Java",
+              "correoElectronico": "estudiante@email.com",
+              "contrasena": "123456"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: " {{ _.bearer.bearer }}"
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/usuarios"
+        name: GET /usuarios - Listar Usuarios
+        meta:
+          id: req_86ae90cc73684cd6894c15381c573ac3
+          created: 1772939710605
+          modified: 1772940286104
+          isPrivate: false
+          description: ""
+          sortKey: -1772928226636
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: " {{ _.bearer.bearer }}"
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Respuestas
+    meta:
+      id: fld_ed0eb71ae90a4a33b4d9811b58098d9f
+      created: 1772939812833
+      modified: 1772939812833
+      sortKey: -1772928219365.5
+      description: ""
+    children:
+      - url: "{{ _.base_url }}/respuestas"
+        name: POST /respuestas - Crear Respuesta (201 Creada)
+        meta:
+          id: req_a9a9d44306f8403dae87c20fa7abfac5
+          created: 1772939812834
+          modified: 1772940552083
+          isPrivate: false
+          description: ""
+          sortKey: -1772938743504
+        method: POST
+        body:
+          mimeType: application/json
+          text: >-
+            {
+              "mensaje": "Recuerda que en Spring Security 6 el método 'authorizeRequests' cambió a 'authorizeHttpRequests'.",
+              "topicoId": 5,
+              "autorId": 1
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: " {{ _.bearer.bearer }}"
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/respuestas"
+        name: GET /respuestas - Listar Respuestas
+        meta:
+          id: req_1455bdd11db84538b5c2f9ab1e4500e0
+          created: 1772939812835
+          modified: 1772940277602
+          isPrivate: false
+          description: ""
+          sortKey: -1772928226636
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: " {{ _.bearer.bearer }}"
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/respuestas"
+        name: POST /respuestas - Crear Respuesta (Error - Tópico no existe)
+        meta:
+          id: req_dbba5f7b4cb74a32af9928603a27bd7e
+          created: 1772940173083
+          modified: 1772940211934
+          isPrivate: false
+          description: ""
+          sortKey: -1772933485070
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "mensaje": "Esto va a fallar",
+              "topicoId": 9999,
+              "autorId": 1
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: " {{ _.bearer.bearer }}"
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/respuestas/1"
+        name: PUT /respuestas - Actualizar Respuesta
+        meta:
+          id: req_0440576a09874783857797243780d6f8
+          created: 1772940351098
+          modified: 1772940391159
+          isPrivate: false
+          description: ""
+          sortKey: -1772938743604
+        method: PUT
+        body:
+          mimeType: application/json
+          text: >-
+            {
+              "mensaje": "EDITADO: La solución es usar @Transactional(readOnly = true) para mejorar performance."
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: " {{ _.bearer.bearer }}"
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/respuestas/2"
+        name: Delete /respuestas - Eliminar Respuestas
+        meta:
+          id: req_0bd6ddf69f6044bfbd49eef96a32aefe
+          created: 1772940452078
+          modified: 1772940489792
+          isPrivate: false
+          description: ""
+          sortKey: -1772922968202
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: " {{ _.bearer.bearer }}"
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_5c18ecc602d41204f720432b3386b74b801e88aa
+    created: 1772916427629
+    modified: 1772916427629
+environments:
+  name: Base Environment
+  meta:
+    id: env_5c18ecc602d41204f720432b3386b74b801e88aa
+    created: 1772916427628
+    modified: 1772934791119
+    isPrivate: false
+  data:
+    base_url: http://localhost:8081
+    bearer:
+      bearer: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3JvIGh1YiIsInN1YiI6ImFkbWluQGZvcm9odWIuY29tIiwiaWQiOjEsImV4cCI6MTc3Mjk0MTY1NX0.JeQdqIH3U8BZqw7wElhr7jHPREoIBzXKt0kxSaKntCE

@@ -2,10 +2,7 @@ package com.alura.foro_hub_challenge.domain.usuario;
 
 import com.alura.foro_hub_challenge.domain.perfil.Perfil;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,6 +27,7 @@ public class Usuario implements UserDetails {
     @Column(name = "correo_electronico", unique = true) // Mapeo exacto a la DB
     private String correoElectronico;
 
+    @Setter
     private String contrasena;
 
     // Relación ManyToMany con Perfiles (Roles)
@@ -41,6 +39,12 @@ public class Usuario implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "perfil_id")
     )
     private List<Perfil> perfiles;
+
+    public Usuario(DatosRegistroUsuario datos) {
+        this.nombre = datos.nombre();
+        this.correoElectronico = datos.correoElectronico();
+        this.contrasena = datos.contrasena();
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

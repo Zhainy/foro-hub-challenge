@@ -17,7 +17,7 @@ import java.time.ZoneOffset;
 public class TokenService {
 
     // Leemos el "secreto" desde application.properties para no dejarlo hardcodeado
-    @Value("${api.security.secret}")
+    @Value("${api.security.token.secret}")
     private String apiSecret;
 
     public String generarToken(Usuario usuario) {
